@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Red Rocket Click & Collect{% endblock %}</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.4.0/font/bootstrap-icons.min.css" rel="stylesheet">
+
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.svg') }}" />
+
+        <!-- Google fonts-->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
+
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+    </head>
+
+    <body id="page-top" style="padding-top: 70px;">
+        <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="{{ url_for('index') }}">
+                    <img src="{{ url_for('static', filename='images/logo-redrocket.svg') }}" style="width: 90px;">
+                </a>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <!-- Other nav items -->
+                        {% if session.get('is_admin') %}
+                            <li class="nav-item">
+                                <form action="{{ url_for('logout') }}" method="post" style="display: inline;">
+                                    <button type="submit" class="btn btn-link nav-link" aria-label="Log Out" style="display: inline; padding: 0; background: none; border: none;">Log Out</button>
+                                </form>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="{{ url_for('index') }}">
+                    <img src="{{ url_for('static', filename='images/logo-redrocket.svg') }}" style="width: 90px;">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{ url_for('index') }}">Home</a></li>
+                    </ul>
+
+                    {% if session.get('is_admin') %}
+                        <form action="{{ url_for('logout') }}" method="post" style="display: inline;">
+                            <button type="submit" class="btn btn-outline-dark rounded-pill" aria-label="Log Out" style="border: none;">Log Out</button>
+                        </form>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}   
+
+        <!--  <div class="container"> -->
+        {% block content %}
+        {% endblock %}
+        <!-- </div> -->
+        
+        <!-- Footer
+        <footer class="py-5 bg-light ">
+            <div class="container"><p class="m-0 text-center text-dark">Copyright &copy; For PMA assignment only 2024</p></div>
+        </footer>-->
+       
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    </body>
+</html>
+
+

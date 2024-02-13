@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container text-center p-5">
+    <h1>Thank You for Your Order!</h1>
+    <p class="text-secondary">Order Number: <strong>{{ order.order_number }}</strong></p>
+    <p class="text-secondary">Name: {{ order.customer_name }}</p>
+    <p class="text-secondary">Contact Number: {{ order.contact_number }}</p>
+    <p class="text-secondary">Order Date: {{ order.order_time }}</p>
+
+    <h3 class="mt-4">Order Details:</h3>
+    
+    {% if order_details %}
+    <table class="table table-bordered mt-4 px-5">
+        <thead class="fw-bolder">
+            <tr>
+                <th>Item</th>
+                <th>Price</th>
+                <th>Quantity</th>   
+            </tr>
+        </thead>
+        <tbody>
+            {% for item_id, item in order_details.items() %}
+            <tr>
+                <td class="text-secondary">{{ item.name }}</td>
+                <td class="text-secondary">£ {{ '%.2f'|format(item.price) }}</td>
+                <td class="text-secondary">{{ item.quantity }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No details available for this order.</p>
+    {% endif %}
+
+    <a href="{{ url_for('index') }}" class="btn btn-danger rounded-pill mt-4">Continue Shopping</a>
+</div>
+{% endblock %}

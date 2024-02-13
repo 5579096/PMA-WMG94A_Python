@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6"> <!-- Adjusts to 50% width on large screens -->
+            <h2 class="text-center fw-bolder mb-4">Checkout</h2>
+            <form action="" method="post">
+                {{ form.hidden_tag() }}
+                <div class="form-group mb-3">
+                    {{ form.name.label(class="form-label") }}
+                    {{ form.name(class="form-control") }}
+                    {% for error in form.name.errors %}
+                    <span class="text-danger">{{ error }}</span>
+                    {% endfor %}
+                </div>
+                <div class="form-group mb-3">
+                    {{ form.contact_number.label(class="form-label") }}
+                    {{ form.contact_number(class="form-control") }}
+                    {% for error in form.contact_number.errors %}
+                    <span class="text-danger">{{ error }}</span>
+                    {% endfor %}
+                </div>
+                <!-- Dummy payment field -->
+                <div class="form-group mb-3">
+                    {{ form.credit_card_number.label(class="form-label") }}
+                    {{ form.credit_card_number(class="form-control") }}
+                    <small class="form-text text-muted">{{ form.credit_card_number.description }}</small>
+                    <small class="form-text text-muted">Payment is for demonstration purposes only.</small>
+                </div>
+
+
+                <div class="text-center justify-content-between">
+                    <button type="button" class="btn btn-secondary rounded-pill" onclick="window.history.back();">Back</button>
+                    {{ form.submit(class="btn btn-success rounded-pill") }}
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-center fw-bolder mb-4">Shopping Cart</h2>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    
+    {% if session['cart']|length > 0 %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Subtotal</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% set ns = namespace(total=0) %}
+                {% for item_id, item in session['cart'].items() %}
+                    {% set subtotal = item['price']|float * item['quantity']|int %}
+                    <tr>
+                        <td>{{ item['name'] }}</td>
+                        <td>£ {{ '%.2f'|format(item['price']) }}</td>
+                        <td>
+                            <form action="{{ url_for('update_cart_item') }}" method="post" class="form-inline">
+                                <input type="hidden" name="item_id" value="{{ item_id }}">
+                                <select name="quantity" class="form-control form-select" onchange="this.form.submit()">
+                                    {% for number in range(1, 11) %}
+                                    <option value="{{ number }}" {% if number == item['quantity'] %} selected {% endif %}>{{ number }}</option>
+                                    {% endfor %}
+                                </select>
+                            </form>
+                        </td>
+                        <td>£ {{ '%.2f'|format(subtotal) }}</td>
+                        <td>
+                            <form action="{{ url_for('remove_from_cart') }}" method="post">
+                                <input type="hidden" name="item_id" value="{{ item_id }}">
+                                <button type="submit" class="btn btn-secondary btn-sm rounded-pill">
+                                    <i class="bi-trash-fill"></i>
+                                       Remove
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% set ns.total = ns.total + subtotal %}
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="3" class="text-right">Total:</th>
+                    <th>£ {{ '%.2f'|format(ns.total) }}</th>
+                    <th></th>
+                </tr>
+            </tfoot>
+        </table>
+        <div class="text-center">
+            <a href="{{ url_for('index') }}" class="btn btn-secondary rounded-pill">Continue Shopping</a>
+            <a href="{{ url_for('checkout') }}" class="btn btn-danger rounded-pill">Proceed to Checkout</a>
+        </div>
+    {% else %}
+        <p class="text-center">{{ empty_message|default("Your cart is empty.") }}</p>
+        <div class="text-center">
+            <a href="{{ url_for('index') }}" class="btn btn-danger rounded-pill">Start Shopping</a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

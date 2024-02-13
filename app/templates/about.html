@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="text-center mb-4">About Us</h1>
+    
+    <!-- Shop Introduction -->
+    <section class="mb-5">
+        <div class="row">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <img src="{{ url_for('static', filename='/images/chef.svg') }}" alt="Grilled Cheese" class="img-fluid rounded">
+            </div>
+            <div class="col-lg-6">
+                <h2>Welcome to Our Grilled Cheese Shop</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <p>From classic grilled cheese sandwiches to gourmet creations, we’ve been melting hearts since [Year]. Our mission is to provide comfort through food, and there's nothing more comforting than a grilled cheese sandwich made with love.</p>
+            </div>
+        </div>
+    </section>
+    
+    
+    <!-- Call to Action -->
+    <div class="text-center">
+        <a href="{{ url_for('index') }}" class="btn btn-lg btn-danger rounded-pill">Explore Our Menu</a>
+    </div>
+</div>
+{% endblock %}

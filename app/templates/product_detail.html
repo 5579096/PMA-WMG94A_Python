@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Product section-->
+<section class="py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="row gx-4 gx-lg-5 align-items-center">
+            <div class="col-md-6">
+                <img class="card-img-top mb-5 mb-md-0" src="{{ url_for('static', filename='images/' + item.image_filename) }}" alt="{{ item.name }}" />
+            </div>
+            <div class="col-md-6">
+                <h1 class="display-5 fw-bolder">{{ item.name }}</h1>
+                <div class="fs-5 mb-5">
+                    <span>£ {{ item.price }}</span>
+                </div>
+                <p class="lead">{{ item.description }}</p>
+                <form action="{{ url_for('add_to_cart') }}" method="post" class="d-flex">
+                    <input type="hidden" name="item_id" value="{{ item.id }}">
+                    <select name="quantity" id="inputQuantity" class="form-control text-center me-3 " style="max-width: 3rem">
+                        {% for number in range(1, 11) %}
+                        <option value="{{ number }}">{{ number }}</option>
+                        {% endfor %}
+                    </select>
+                    <button class="btn btn-danger rounded-pill" type="submit">
+                        Add to cart
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
