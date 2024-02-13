@@ -14,12 +14,11 @@ A initail Click and Collect Web Application to demonstrating Flask and SQL usage
 You must have a copy of the code on your local machine.
 Either clone the repository or download a ZIP archive of the code.
 
-To clone it use the VScode source control tools with the repository URL `https://github.com/5579096/PMA-ClickandCollect`.
-You will be asked for a target directory. After the clone is complete you should have a folder `ClickandCollect` in the target directory.
+To clone it use the VScode source control tools with the repository URL `https://github.com/5579096/clickandcollect2-main`.
+You will be asked for a target directory. After the clone is complete you should have a folder `clickandcollect2-main` in the target directory.
 Open this directory in VScode before proceeding to the next steps.
 
-To download a ZIP archive go to [the repository](https://github.com/5579096/PMA-ClickandCollect)
-![screenshot](images/github_screenshot.png). Select the green `code` button. Then select the `Download ZIP` option at the bottom of the dropdown menu. This will download a file `clickandcollect2-main.zip` to your local disk. Move the file `clickandcollect2-main.zip` to a target directory and unpack it. Unpacking may result in a folder with subfolder `PMA/clickandcollect2-main` or just a folder `clickandcollect2-main` in your target directory. Whatever the results of unpacking the ZIP file you want to open the folder `clickandcollect2-main` in VSCode before proceeding to the next steps.
+To download a ZIP archive go to [the repository](https://github.com/5579096/clickandcollect2-main) Select the green `code` button. Then select the `Download ZIP` option at the bottom of the dropdown menu. This will download a file `clickandcollect2-main.zip` to your local disk. Move the file `clickandcollect2-main.zip` to a target directory and unpack it. Unpacking may result in a folder with subfolder `PMA/clickandcollect2-main` or just a folder `clickandcollect2-main` in your target directory. Whatever the results of unpacking the ZIP file you want to open the folder `clickandcollect2-main` in VSCode before proceeding to the next steps.
 
 ## Copy the Database
 
