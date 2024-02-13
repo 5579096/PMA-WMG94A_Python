@@ -42,10 +42,10 @@ Initially, the application must be prepared for production by setting 'DEBUG' to
 
 ## Released note
 
-version 1 - Keep order item in session
-version 2.1 - Add log in account for editing Food Item CRUD
-version 2.2 - Add timestamp to order table
-version 2.3 - Add testing 'test-int.py' and 'test-unit.py'
+- version 1 - Keep order item in session
+- version 2.1 - Add log in account for editing Food Item CRUD
+- version 2.2 - Add timestamp to order table
+- version 2.3 - Add testing 'test-int.py' and 'test-unit.py'
 
 ## User-End funtion
 
